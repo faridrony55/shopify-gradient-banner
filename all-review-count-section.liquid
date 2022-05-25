@@ -1,0 +1,86 @@
+{% assign img = section.settings.bg %}
+<section class="allreview-widget">
+  <div class="allReview">
+    <div> 
+      <strong>Excellent</strong>
+    {% if shop.metafields.loox["global_stats"] %}
+{% assign looxstats = shop.metafields.loox["global_stats"] | split: ',' %} 
+<div class="loox-rating loox-rating-hp" data-rating="{{ looxstats[0] }}" data-raters="{{ looxstats[1] }}"></div> 
+{% endif %}
+      <span> Reviews</span>
+    </div>
+  </div>
+</section>
+
+<style>
+  .allreview-widget{
+  	padding:30px 0;
+    background-image:url({{ img | img_url: '1900x600' }});
+    background-repeat:no-repeat;
+    background-size:cover;
+    
+  }
+ .allReview {
+    display: flex;
+    justify-content: center;
+}
+.allReview > div {
+    display: flex;
+    justify-content: space-between;
+    padding: 10px 30px;
+    box-shadow: 0 0 30px #33333326;
+    border-radius: 30px;
+    background: #fff;
+    align-items: center;
+    font-size: 22px;
+}
+  .allReview > div > strong{
+  
+    margin-right: 15px;
+  }
+  .allReview > div > span{
+  
+    margin-left: 10px;
+  }
+  
+  @media(max-width: 767px){
+  .allReview > div { 
+    font-size: 17px;
+}
+  }
+</style>
+  {% schema %}
+  {
+    "name": "Count Total Review",
+    "settings": [
+		{
+          "type": "checkbox",
+          "id": "displayreview",
+          "label": "Check to Display All Reviews",
+          "default": true
+        },
+        {
+          "type": "image_picker",
+          "id": "bg",
+          "label": "background Image" 
+        } 
+	],
+	"presets": [
+    {
+      "name": "Count Total Review",
+      "category": "Content"
+    }
+  ],
+  "templates": [
+    "index",
+    "product" ,
+	"page"
+  ]
+  }
+{% endschema %}
+
+{% stylesheet %}
+{% endstylesheet %}
+
+{% javascript %}
+{% endjavascript %}
